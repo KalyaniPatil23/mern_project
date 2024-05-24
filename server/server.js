@@ -50,6 +50,27 @@ function getExternalData() {
         })
     })
 }
+// app.get('/all', function(req, resp){
+//         db.query(`SELECT * FROM products`, (error,result,fields)=>{
+//             if(error) throw error
+//             resp.send(result)
+//         })
+// })
+
+app.get('/all', function(req, resp){
+    const data = req.query.search
+    if(data){
+        db.query(`SELECT * FROM products WHERE title LIKE '%${data}%' OR description LIKE '%${data}%' OR price LIKE '%${data}%'`, (error,result,fields)=>{
+            if(error) throw error
+            resp.send(result)
+        })
+    }else{
+        db.query(`SELECT * FROM products`, (error,result,fields)=>{
+            if(error) throw error
+            resp.send(result)
+        })
+    }
+})
 app.listen(port, ()=>{
     console.log('listening')
     getExternalData()
