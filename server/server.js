@@ -35,8 +35,8 @@ function getExternalData() {
                         const category = element.category
                         const image = element.image
                         const sold = element.sold
-                        const dateOfSold = element.dateOfSold
-                        db.query('insert into products values(?,?,?,?,?,?,?,?)', [id, title, price, description, category, image, sold, dateOfSold], (err, data) =>{
+                        const dateOfSale = element.dateOfSale
+                        db.query('insert into products values(?,?,?,?,?,?,?,?)', [id, title, price, description, category, image, sold, dateOfSale], (err, data) =>{
                             if(err){
                                 console.log(err)
                             }else{
